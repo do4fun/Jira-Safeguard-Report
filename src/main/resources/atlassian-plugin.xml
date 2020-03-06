@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<atlassian-plugin key="${atlassian.plugin.key}" name="${project.name}" plugins-version="2"> 
+  <plugin-info> 
+    <description>${project.description}</description>  
+    <version>${project.version}</version>  
+    <vendor name="${project.organization.name}" url="${project.organization.url}"/>  
+    <param name="plugin-icon">images/pluginIcon.png</param>  
+    <param name="plugin-logo">images/pluginLogo.png</param> 
+  </plugin-info>  
+  <!-- add our i18n resource -->  
+  <resource type="i18n" name="i18n" location="eclipse-report-plugin"/>  
+  <!-- add our web resources -->  
+  <web-resource key="eclipse-report-plugin-resources" name="eclipse-report-plugin Web Resources"> 
+    <dependency>com.atlassian.auiplugin:ajs</dependency>  
+    <resource type="download" name="eclipse-report-plugin.css" location="/css/eclipse-report-plugin.css"/>  
+    <resource type="download" name="eclipse-report-plugin.js" location="/js/eclipse-report-plugin.js"/>  
+    <resource type="download" name="images/" location="/images"/>  
+    <context>eclipse-report-plugin</context> 
+  </web-resource>  
+  <report name="Single Level Group By Report Extended" i18n-name-key="single-level-group-by-report-extended.name" key="single-level-group-by-report-extended" class="com.netappsid.jira.reports.SingleLevelGroupByReportExtended"> 
+    <description key="single-level-group-by-report-extended.description">The Single Level Group By Report Extended Plugin</description>  
+    <resource name="view" type="velocity" location="/templates/reports/single-level-group-by-report-extended/view.vm"/>  
+    <resource name="i18n" type="i18n" location="SingleLevelGroupByReportExtended"/>  
+    <label key="single-level-group-by-report-extended.label"/>
+   <properties>
+         <property>
+             <key>filterid</key>
+             <name>report.singlelevelgroupby.filterId</name>
+             <description>report.singlelevelgroupby.filterId.description</description>
+             <type>filterpicker</type>
+             <i18n>false</i18n>
+         </property>
+         <property>
+             <key>mapper</key>
+             <name>report.singlelevelgroupby.mapper</name>
+             <description>report.singlelevelgroupby.mapper.description</description>
+             <type>select</type>
+             <values class="com.atlassian.jira.issue.statistics.FilterStatisticsValuesGenerator" />
+         </property>
+    </properties>
+    <!-- the properties of this report which the user must select before running it -->  
+    <!-- Uncomment and edit properties...
+    <properties>
+        <property>
+            <key>versionId</key>
+            <name>common.concepts.version</name>
+            <description>report.timetracking.version.description</description>
+            <type>select</type>
+            <values class="com.atlassian.jira.portal.VersionOptionalValuesGenerator"/>
+        </property>
+        <property>
+            <key>sortingOrder</key>
+            <name>report.timetracking.sortingorder</name>
+            <description>report.timetracking.sortingorder.description</description>
+            <type>select</type>
+            <values class="com.atlassian.jira.portal.SortingValuesGenerator"/>
+        </property>
+    </properties>
+    --> 
+  </report>  
+  <report name="Creation Report" i18n-name-key="creation-report.name" key="creation-report" class="com.netappsid.jira.reports.CreationReport"> 
+    <description key="creation-report.description">The Creation Report Plugin</description>  
+    <resource name="view" type="velocity" location="/templates/reports/creation-report/view.vm"/>  
+    <resource name="i18n" type="i18n" location="CreationReport"/>  
+    <label key="creation-report.label"></label>
+	<properties>
+         <property>
+             <key>projectid</key>
+             <name>report.issuecreation.projectid.name</name>
+             <description>report.issuecreation.projectid.description</description>
+             <type>filterprojectpicker</type>
+         </property>
+         <property>
+             <key>startDate</key>
+             <name>report.issuecreation.startdate</name>
+             <description>report.issuecreation.startdate.description</description>
+             <type>date</type>
+         </property>
+         <property>
+             <key>endDate</key>
+             <name>report.issuecreation.enddate</name>
+             <description>report.issuecreation.enddate.description</description>
+             <type>date</type>
+         </property>
+         <property>
+             <key>interval</key>
+             <name>report.issuecreation.interval</name>
+             <description>report.issuecreation.interval.description</description>
+             <type>long</type>
+             <default>3</default>
+         </property>
+	</properties>
+	</report>
+	<report name="Safeguard Full View Report" i18n-name-key="report.fullview.name" key="fullview-report" class="com.netappsid.jira.safeguardreports.FullView"> 
+	    <description key="report.fullview.description">The Safeguard Full View Report Plugin</description>  
+	    <resource name="view" type="velocity" location="/templates/reports/fullview-report/view.vm"/>  
+	    <resource name="i18n" type="i18n" location="FullViewReport"/>  
+	    <label key="report.fullview.label"></label>
+		<properties>
+	         <property>
+	             <key>projectid</key>
+	             <name>report.fullview.projectid.name</name>
+	             <description>report.fullview.projectid.description</description>
+	             <type>filterprojectpicker</type>
+	         </property>
+	         <property>
+	             <key>startDate</key>
+	             <name>report.fullview.startdate</name>
+	             <description>report.fullview.startdate.description</description>
+	             <type>date</type>
+	         </property>
+	         <property>
+	             <key>endDate</key>
+	             <name>report.fullview.enddate</name>
+	             <description>report.fullview.enddate.description</description>
+	             <type>date</type>
+	         </property>
+	         <property>
+	             <key>interval</key>
+	             <name>report.fullview.interval</name>
+	             <description>report.fullview.interval.description</description>
+	             <type>long</type>
+	             <default>3</default>
+	         </property>
+		</properties>   
+	</report>
+</atlassian-plugin>
