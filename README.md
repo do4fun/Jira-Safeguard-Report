@@ -16,13 +16,3 @@ use atlas-mvn package
 atlas-run
 or 
 atlas-debug --jvm-debug-port 7456
-
-If you want to retrieve data,
-cut and paste database directory under Jira-Safeguard-Report\target\jira\home\database
-
-restart the server 
-atlas-run
-or 
-atlas-debug --jvm-debug-port 7456
-
-select the gears (Admin Setup) and Issues
