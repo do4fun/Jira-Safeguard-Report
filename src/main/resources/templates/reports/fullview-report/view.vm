@@ -1,33 +1,40 @@
-<div style="padding: 5px">
-   <!-- Display the report configuration -->
-   <h4 id="creation-report-parameters">
-       $i18n.getText('report.fullview.project'): $projectName |
-       $i18n.getText('report.fullview.duration'):$startDate - $endDate |
-       $i18n.getText('report.fullview.interval'): $interval $i18n.getText('report.fullview.interval.days')
-   </h4>
-   <br />
-   <table style="width: 100%; border: 0; background-color: lightgrey">
-       <!-- Create a row to display the bars-->
-       <tr valign="bottom" style="background-color: white; padding: 1px">
-           #foreach ($issueBarHeight in $issueBarHeights)
-               <td height="$maxHeight" align="center">
-                   #if ($issueBarHeight > 0)
-                       <img src="${baseurl}/images/bluepixel.gif" width="12" height="$issueBarHeight">
-                   #end
-               </td>
-           #end
-       </tr>
-       <!-- Have one row for the issue count -->
-       <tr style="background-color: #eee; padding: 1px">
-           #foreach ($count in $openCount)
-               <td align="center"><b>$count</b></td>
-           #end
-       </tr>
-       <!-- And one row to display the date -->
-       <tr style="background-color: #eee; padding: 1px">
-           #foreach ($date in $dates)
-               <td align="center"><b>$date</b></td>
-           #end
-       </tr>
-   </table>
-</div>
+#enable_html_escaping()
+#if ($searchRequest)
+    #set ($urlPrefix = "${req.contextPath}/secure/IssueNavigator.jspa?reset=true")
+#end
+<table width="100%" class="aui" id="single_groupby_report_table">
+    <thead>
+    <tr>
+        <th colspan="6">
+            <h2>$i18n.getText('report.fullview.name')</h2>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        #foreach ($option in $statsGroup.entrySet())
+            #set ($issues = $option.value)
+            #if ($issues.size() > 0)
+                #foreach ($issue in $issues)
+                <tr>
+                    <td width="5%"> </td>
+                    #issueLineItem ($issue)
+                    <td nowrap class="assignee">
+                        #if($issue.getAssignee())
+                            $issue.getAssignee().getDisplayName()
+                        #else
+                            $i18n.getText('common.concepts.unassigned')
+                        #end</td>
+                    <td nowrap class="last-updated"> $formatter.format($issue.getUpdated())</td>
+                </tr>
+                #end
+            #else
+            <tr>
+                <td colspan="6">
+                    <span class="subText">$action.getText("common.concepts.noissues").</span>
+                </td>
+            </tr>
+            #end
+        #end
+    </tbody>
+</table>
+#showDebugPopup()

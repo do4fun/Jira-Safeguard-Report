@@ -98,12 +98,13 @@
 	    <resource name="i18n" type="i18n" location="FullViewReport"/>  
 	    <label key="report.fullview.label"></label>
 		<properties>
-	         <property>
-	             <key>projectid</key>
-	             <name>report.fullview.projectid.name</name>
-	             <description>report.fullview.projectid.description</description>
-	             <type>filterprojectpicker</type>
-	         </property>
+			<property>
+			    <key>filterid</key>
+			    <name>report.singlelevelgroupby.filterId</name>
+			    <description>report.fullview.filterId.description</description>
+			    <type>filterpicker</type>
+			    <i18n>false</i18n>
+			</property>
 	         <property>
 	             <key>startDate</key>
 	             <name>report.fullview.startdate</name>
@@ -116,13 +117,13 @@
 	             <description>report.fullview.enddate.description</description>
 	             <type>date</type>
 	         </property>
-	         <property>
-	             <key>interval</key>
-	             <name>report.fullview.interval</name>
-	             <description>report.fullview.interval.description</description>
-	             <type>long</type>
-	             <default>3</default>
-	         </property>
+			<property>
+                <key>customerId</key>
+                <name>report.fullview.customer.name</name>
+                <description>report.fullview.customer.description</description>
+                <type>select</type>
+                <values class="com.netappsid.jira.safeguardreports.FilterCustomerValuesGenerator"/>
+            </property>
 		</properties>   
 	</report>
 </atlassian-plugin>

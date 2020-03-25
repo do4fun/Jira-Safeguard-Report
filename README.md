@@ -16,3 +16,5 @@ use atlas-mvn package
 atlas-run
 or 
 atlas-debug --jvm-debug-port 7456
+
+Configure DB connection on %CATALINA_HOME%\dbconfig.xml
